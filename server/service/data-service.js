@@ -5,21 +5,19 @@ const getContactListByName = (name = "") => {
     console.log("getContactListByName: started", name);
     let filteredContacts = [];
     name = name ? name.toLowerCase().trim() : "";
-    if (!name) {
-      return contacts;
-    } else {
+    if (name) {
       filteredContacts = contacts.filter(c =>
         c.name.toLowerCase().includes(name)
       );
     }
     console.log("getContactListByName: completed", name);
-
     return filteredContacts;
   } catch (err) {
     console.log("getContactListByName: failed", name, err);
   }
 };
-
+const getAllContacts = () => contacts;
 module.exports = {
-  getContactListByName
+  getContactListByName,
+  getAllContacts
 };
