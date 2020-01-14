@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SearchFilter from "./search-filter.jsx";
 import ContactList from "../contact/contact-list.jsx";
 import axios from "axios";
-import {API_PATH} from "../../lib/constant";
+import { API_PATH } from "../../lib/constant";
 
 export default class Home extends Component {
   constructor() {
@@ -14,7 +14,7 @@ export default class Home extends Component {
 
   componentDidMount() {
     axios
-      .get(API_)
+      .get(API_PATH.GET_ALL_CONTACTS())
       .then(res => {
         this.setState({ contacts: res.data });
       })
