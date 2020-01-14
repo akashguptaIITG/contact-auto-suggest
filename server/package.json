@@ -1,0 +1,16 @@
+{
+  "name": "contact-auto-suggest-api",
+  "version": "1.0.0",
+  "description": "api for contact-auto-suggest web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node index.js"
+  },
+  "author": "akash gupta",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.2.4",
+    "dotenv": "^8.2.0"
+  }
+}
