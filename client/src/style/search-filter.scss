@@ -1,0 +1,12 @@
+.search-filter {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .btn {
+    padding-top: 6px;
+    padding-bottom: 6px ;
+  }
+  .card {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+}
