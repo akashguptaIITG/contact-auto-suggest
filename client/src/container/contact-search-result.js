@@ -8,7 +8,7 @@ const mapStateToProps = state => {
 
   return {
     isLoading: isLoadingContactsByName,
-    searchSuggestions: contactsByName
+    contactSearchResults: contactsByName
   };
 };
 

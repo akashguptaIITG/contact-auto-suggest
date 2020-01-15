@@ -9,7 +9,7 @@ export default class SearchFilter extends Component {
     this.state = {
       name: "",
       redirect: false,
-      noSuggestions:true
+      noSuggestions: true
     };
     this.handleStateChange = this.handleStateChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -24,16 +24,17 @@ export default class SearchFilter extends Component {
   handleSearchClick() {
     let { name = "" } = this.state;
     if (name !== undefined && name !== "" && name.trim().length >= 2) {
-      this.setState({ redirect: true,noSuggestions:true });
+      this.setState({ redirect: true, noSuggestions: true });
     }
   }
   handleNameChange() {
     let { name = "" } = this.state;
     if (name !== undefined && name !== "" && name.trim().length >= 2) {
-      let url=API_PATH.GET_CONTACTS_BY_NAME(name);
-      this.props.getContactsByName({url});
+      let url = API_PATH.GET_CONTACTS_BY_NAME(name);
+      this.props.getContactsByName({ url });
+      this.setState({ noSuggestions: false });
     } else {
-      this.setState({ noSuggestions:true });
+      this.setState({ noSuggestions: true });
     }
   }
   renderRedirect = () => {
@@ -49,7 +50,7 @@ export default class SearchFilter extends Component {
   };
   render() {
     let { noSuggestions } = this.state;
-      let {searchSuggestions} =this.props;
+    let { searchSuggestions } = this.props;
     return (
       <div className="search-filter">
         {this.renderRedirect()}

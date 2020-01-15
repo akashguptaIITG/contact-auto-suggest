@@ -13,13 +13,13 @@ export default class Home extends Component {
     this.props.getContactsAll({ url });
   }
   render() {
-    let { contactsAll, isLoading } = this.props;
+    let { contactsAll, isLoading, searchSuggestions,getContactsByName } = this.props;
     if (isLoading) {
       return <img src="loader.svg" alt="lodaing..." className="loader" />;
     }
     return (
       <div className="container">
-        <SearchFilter />
+        <SearchFilter searchSuggestions={searchSuggestions} getContactsByName={getContactsByName} />
         <ContactList contacts={contactsAll} />
       </div>
     );
