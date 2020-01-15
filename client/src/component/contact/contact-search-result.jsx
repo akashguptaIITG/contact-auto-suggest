@@ -11,10 +11,10 @@ export default class ContactSearchResult extends Component {
   componentDidMount() {
     let queryParams = queryString.parse(this.props.location.search);
     let url = API_PATH.GET_CONTACTS_BY_NAME(queryParams.name);
-    this.props.getContactsByName({url});
+    this.props.getContactsByName({ url });
   }
   render() {
-    let { contactSearchResults, isLoading } = this.state;
+    let { contactSearchResults, isLoading } = this.props;
     if (contactSearchResults.length === 0 && !isLoading) {
       return <h4>No contacts Found</h4>;
     }
