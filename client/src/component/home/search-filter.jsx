@@ -8,8 +8,8 @@ export default class SearchFilter extends Component {
     super();
     this.state = {
       name: "",
-      searchSuggestions: [],
-      redirect: false
+      redirect: false,
+      noSuggestions:true
     };
     this.handleStateChange = this.handleStateChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -24,22 +24,21 @@ export default class SearchFilter extends Component {
   handleSearchClick() {
     let { name = "" } = this.state;
     if (name !== undefined && name !== "" && name.trim().length >= 2) {
-      this.setState({ redirect: true });
+      this.setState({ redirect: true,noSuggestions:true });
     }
   }
   handleNameChange() {
     let { name = "" } = this.state;
     if (name !== undefined && name !== "" && name.trim().length >= 2) {
-      axios.get(API_PATH.GET_CONTACTS_BY_NAME(name)).then(response => {
-        let searchSuggestions = response.data;
-        this.setState({ searchSuggestions });
-      });
+      let url=API_PATH.GET_CONTACTS_BY_NAME(name);
+      this.props.getContactsByName({url});
     } else {
-      this.setState({ searchSuggestions: [] });
+      this.setState({ noSuggestions:true });
     }
   }
   renderRedirect = () => {
     let { name } = this.state;
+
     if (this.state.redirect) {
       return (
         <Redirect
@@ -49,7 +48,8 @@ export default class SearchFilter extends Component {
     }
   };
   render() {
-    let { searchSuggestions } = this.state;
+    let { noSuggestions } = this.state;
+      let {searchSuggestions} =this.props;
     return (
       <div className="search-filter">
         {this.renderRedirect()}
@@ -69,13 +69,9 @@ export default class SearchFilter extends Component {
             search
           </button>
         </div>
-        <div className="card" hidden={searchSuggestions.length ? false : true}>
+        <div className="card" hidden={noSuggestions}>
           {searchSuggestions.map((contact, index) => {
-            return (
-              <ul key={index}>
-                <li>{contact.name}</li>
-              </ul>
-            );
+            return <span key={index}>{contact.name}</span>;
           })}
         </div>
       </div>

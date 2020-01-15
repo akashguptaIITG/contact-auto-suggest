@@ -4,11 +4,12 @@ import Home from "../component/home/home.jsx";
 import { getContactsAll } from "../redux/action/action";
 
 const mapStateToProps = state => {
-  let { isLoadingContactsAll, contactsAll } = state.contact;
+  let { isLoadingContactsAll, contactsAll,isLoadingContactsByName,contactsByName } = state.contact;
 
   return {
     isLoading: isLoadingContactsAll,
-    contactsAll
+    contactsAll,
+    searchSuggestions:contactsByName
   };
 };
 
