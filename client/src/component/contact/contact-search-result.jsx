@@ -7,23 +7,11 @@ import { API_PATH } from "../../lib/constant";
 export default class ContactSearchResult extends Component {
   constructor() {
     super();
-    this.state = {
-      contactSearchResults: [],
-      isLoading: true
-    };
   }
   componentDidMount() {
     let queryParams = queryString.parse(this.props.location.search);
     let url = API_PATH.GET_CONTACTS_BY_NAME(queryParams.name);
-    axios
-      .get(url)
-      .then(res => {
-        let contactSearchResults = res.data;
-        this.setState({ contactSearchResults, isLoading: false });
-      })
-      .catch(err => {
-        this.setState({ contactSearchResults: [], isLoading: false });
-      });
+    this.props.getContactsByName({url});
   }
   render() {
     let { contactSearchResults, isLoading } = this.state;

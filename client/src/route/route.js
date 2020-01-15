@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Home from "../component/home/home.jsx";
-import ContactSearchResult from "../component/contact/contact-search-result.jsx";
+import Home from "../container/home.js";
+import ContactSearchResult from "../container/contact-search-result";
 
 const route = () => {
   return (

@@ -1,33 +1,23 @@
 import React, { Component } from "react";
 import SearchFilter from "./search-filter.jsx";
 import ContactList from "../contact/contact-list.jsx";
-import axios from "axios";
 import { API_PATH } from "../../lib/constant";
 
 export default class Home extends Component {
-  constructor() {
-    super();
-    this.state = {
-      contacts: []
-    };
+  constructor(props) {
+    super(props);
   }
 
   componentDidMount() {
-    axios
-      .get(API_PATH.GET_ALL_CONTACTS())
-      .then(res => {
-        this.setState({ contacts: res.data });
-      })
-      .catch(err => {
-        this.setState({ contacts: [] });
-      });
+    let url = API_PATH.GET_CONTACTS_ALL();
+    this.props.getContactsAll({ url });
   }
   render() {
-    let { contacts } = this.state;
+    let { contactsAll } = this.props;
     return (
       <div className="container">
         <SearchFilter />
-        <ContactList contacts={contacts} />
+        <ContactList contacts={contactsAll} />
       </div>
     );
   }
