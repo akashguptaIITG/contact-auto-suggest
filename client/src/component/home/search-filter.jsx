@@ -23,7 +23,7 @@ export default class SearchFilter extends Component {
   }
   handleSearchClick() {
     let { name = "" } = this.state;
-    if (name !== undefined && name !== "" && name.trim().length >= 2) {
+    if (name !== undefined && name !== "" && name.trim().length >= 1) {
       this.setState({ redirect: true, noSuggestions: true });
     }
   }
