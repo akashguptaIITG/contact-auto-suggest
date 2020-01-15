@@ -15,6 +15,9 @@ export default class ContactSearchResult extends Component {
   }
   render() {
     let { contactSearchResults, isLoading } = this.props;
+    if (isLoading) {
+      return <img src="loader.svg" alt="lodaing..." className="loader" />;
+    }
     if (contactSearchResults.length === 0 && !isLoading) {
       return <h4>No contacts Found</h4>;
     }
